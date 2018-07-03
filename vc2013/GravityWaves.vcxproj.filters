@@ -1,0 +1,276 @@
+﻿<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Blocks">
+      <UniqueIdentifier>{948E6452-84AF-41A6-8FCB-352A958E666A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\ImGui">
+      <UniqueIdentifier>{A749492D-D7F3-4EAE-8E17-B36A05EE044D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\ImGui\include">
+      <UniqueIdentifier>{97BA44C4-5D77-44C5-AC92-611CB86DC563}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\ImGui\lib">
+      <UniqueIdentifier>{2C565E0D-0054-4555-AB26-2B0B9A5B1F27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\ImGui\lib\imgui">
+      <UniqueIdentifier>{DE4AEA2E-72DD-4661-9685-BD5E99F87067}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\ImGui\src">
+      <UniqueIdentifier>{0357F373-01CE-471E-8663-AB6B9E0A0EF0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Cinder-KCB2">
+      <UniqueIdentifier>{C13C19D3-041B-4AE7-A5D5-26E89C5A0455}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Cinder-KCB2\src">
+      <UniqueIdentifier>{2A80E964-6AA4-4D53-81C4-7C7013420380}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{69651166-e73e-4447-b824-5f0773d1720b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering">
+      <UniqueIdentifier>{9fd73e39-4a18-46f7-80f7-aa7e8b573512}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Video">
+      <UniqueIdentifier>{f89bc4ee-cf11-4930-8519-259eec35fc77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Video\Win32">
+      <UniqueIdentifier>{0040379c-681d-40a0-9f13-7a85cdd2a551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Video\Win32\WMF">
+      <UniqueIdentifier>{7683dcf6-d7d0-4c9a-a30a-3be29d03972c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Video\Win32\WMF\Presenter">
+      <UniqueIdentifier>{32ab1a4a-77b7-41fc-80e2-8766ddf05421}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Video\Win32\WMF\Presenter\Common">
+      <UniqueIdentifier>{4f325416-9247-4a0b-b401-9b41425c0100}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\GravityWavesApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClInclude Include="..\include\Resources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\ImGui\include\CinderImGui.h">
+      <Filter>Blocks\ImGui\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\ImGui\lib\imgui\imconfig.h">
+      <Filter>Blocks\ImGui\lib\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\ImGui\lib\imgui\imgui.h">
+      <Filter>Blocks\ImGui\lib\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\ImGui\lib\imgui\imgui_internal.h">
+      <Filter>Blocks\ImGui\lib\imgui</Filter>
+    </ClInclude>
+    <ClCompile Include="..\blocks\ImGui\src\CinderImGui.cpp">
+      <Filter>Blocks\ImGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui.cpp">
+      <Filter>Blocks\ImGui\lib\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_draw.cpp">
+      <Filter>Blocks\ImGui\lib\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_demo.cpp">
+      <Filter>Blocks\ImGui\lib\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blocks\Cinder-KCB2\src\Kinect2.cpp">
+      <Filter>Blocks\Cinder-KCB2\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Video\Win32\WMF\Presenter\PresentEngine.cpp">
+      <Filter>Source Files\Video\Win32\WMF\Presenter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Video\Win32\WMF\Presenter\Presenter.cpp">
+      <Filter>Source Files\Video\Win32\WMF\Presenter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Video\Win32\WMF\Presenter\PresenterHelpers.cpp">
+      <Filter>Source Files\Video\Win32\WMF\Presenter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Video\Win32\WMF\Presenter\scheduler.cpp">
+      <Filter>Source Files\Video\Win32\WMF\Presenter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Video\Win32\WMF\WMFVideoPlayerImpl.cxx">
+      <Filter>Source Files\Video\Win32\WMF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Video\Win32\WMF\WMFVideoPlayerPrivateImpl.cxx">
+      <Filter>Source Files\Video\Win32\WMF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Video\Win32\WMF\WMFVideoPlayerTopology.cxx">
+      <Filter>Source Files\Video\Win32\WMF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Video\Win32\KinectDepthCamera.cxx">
+      <Filter>Source Files\Video\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Video\DepthCamera.cxx">
+      <Filter>Source Files\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Video\SlopeFieldGenerator.cxx">
+      <Filter>Source Files\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Video\VideoPlayer.cxx">
+      <Filter>Source Files\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Common\Constants.cxx">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Common\Osc.cxx">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Common\OscSender.cxx">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Common\Types.cxx">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Rendering\Enities.cxx">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Rendering\ParticleSystem.cxx">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GravityWavesApp.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Precompiled.cxx">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\Resources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\Cinder-KCB2\src\Kinect2.h">
+      <Filter>Blocks\Cinder-KCB2\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\AsyncCB.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\BufferLock.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\ClassFactory.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\common.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\critsec.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\GrowArray.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\linklist.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\logging.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\logmediatype.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\mediatype.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\mfutils.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\PropVar.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\registry.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\TinyMap.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\trace.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\EVRPresenter.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\EVRPresenterUuid.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\PresentEngine.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\Presenter.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\PresenterHelpers.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\scheduler.h">
+      <Filter>Source Files\Video\Win32\WMF\Presenter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\WMFVideoPlayerImpl.h">
+      <Filter>Source Files\Video\Win32\WMF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\WMFVideoPlayerPrivateImpl.h">
+      <Filter>Source Files\Video\Win32\WMF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\WMF\WMFVideoPlayerTopology.h">
+      <Filter>Source Files\Video\Win32\WMF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\Win32\KinectDepthCamera.h">
+      <Filter>Source Files\Video\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\DepthCamera.h">
+      <Filter>Source Files\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\SlopeFieldGenerator.h">
+      <Filter>Source Files\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Video\VideoPlayer.h">
+      <Filter>Source Files\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Common\Constants.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Common\Osc.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Common\OscSender.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Common\Types.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Rendering\Enities.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Rendering\ParticleSystem.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GravityWavesApp.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Precompiled.pch">
+      <Filter>Header Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

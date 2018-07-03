@@ -1,0 +1,205 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{45790531-23DE-46F1-92FD-332930C7E8BF}</ProjectGuid>
+    <RootNamespace>GravityWaves</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir)build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)build\$(Platform)\$(Configuration)\intermediate\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)build\$(Platform)\$(Configuration)\intermediate\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\include;..\src;..\..\cinder\include;..\blocks\ImGui\lib\imgui;..\blocks\ImGui\include;..\blocks\Cinder-KCB2\src;..\blocks\Cinder-KCB2\lib;$(KINECTSDK20_DIR)\inc</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PrecompiledHeaderFile>Precompiled.pch</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>Precompiled.pch</ForcedIncludeFiles>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>"..\..\..\..\SDKs\cinder_0.9.1\include";..\include</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>cinder.lib;OpenGL32.lib;%(AdditionalDependencies);..\blocks\Cinder-KCB2\lib\$(PlatformTarget)\$(Configuration)\KCBv2.lib;$(KINECTSDK20_DIR)\lib\$(PlatformTarget)\kinect20.lib;$(KINECTSDK20_DIR)\lib\$(PlatformTarget)\Kinect20.Face.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\cinder\lib\msw\$(PlatformTarget);..\..\cinder\lib\msw\$(PlatformTarget)\$(Configuration)\$(PlatformToolset)\</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <IgnoreSpecificDefaultLibraries>LIBCMT;LIBCPMT</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y "..\..\..\..\SDKs\cinder_0.9.1\blocks\Cinder-KCB2\lib\$(PlatformTarget)\$(Configuration)\KCBv2.dll" "$(OutDir)"
+xcopy /y "$(KINECTSDK20_DIR)Redist\Face\$(PlatformTarget)\Kinect20.Face.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\include;..\src;..\..\cinder\include;..\blocks\ImGui\lib\imgui;..\blocks\ImGui\include;..\blocks\Cinder-KCB2\src;..\blocks\Cinder-KCB2\lib;$(KINECTSDK20_DIR)\inc</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PrecompiledHeaderFile>Precompiled.pch</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>Precompiled.pch</ForcedIncludeFiles>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>"..\..\..\..\SDKs\cinder_0.9.1\include";..\include</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>cinder.lib;OpenGL32.lib;%(AdditionalDependencies);..\blocks\Cinder-KCB2\lib\$(PlatformTarget)\KCBv2.lib;$(KINECTSDK20_DIR)\lib\$(PlatformTarget)\kinect20.lib;$(KINECTSDK20_DIR)\lib\$(PlatformTarget)\Kinect20.Face.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\cinder\lib\msw\$(PlatformTarget)\;..\..\cinder\lib\msw\$(PlatformTarget)\$(Configuration)\$(PlatformToolset)\</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding />
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y "..\..\..\..\SDKs\cinder_0.9.1\blocks\Cinder-KCB2\lib\$(PlatformTarget)\KCBv2.dll" "$(OutDir)"
+xcopy /y "$(KINECTSDK20_DIR)Redist\Face\$(PlatformTarget)\Kinect20.Face.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Precompiled.pch" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ClCompile Include="..\blocks\Cinder-KCB2\src\Kinect2.cpp" />
+    <ClCompile Include="..\blocks\ImGui\src\CinderImGui.cpp" />
+    <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui.cpp" />
+    <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\src\Common\Constants.cxx" />
+    <ClCompile Include="..\src\Common\Osc.cxx" />
+    <ClCompile Include="..\src\Common\OscSender.cxx" />
+    <ClCompile Include="..\src\Common\Types.cxx" />
+    <ClCompile Include="..\src\GravityWavesApp.cxx" />
+    <ClCompile Include="..\src\Rendering\Enities.cxx" />
+    <ClCompile Include="..\src\Rendering\ParticleSystem.cxx" />
+    <ClCompile Include="..\src\Video\DepthCamera.cxx" />
+    <ClCompile Include="..\src\Video\SlopeFieldGenerator.cxx" />
+    <ClCompile Include="..\src\Video\VideoPlayer.cxx" />
+    <ClCompile Include="..\src\Video\Win32\KinectDepthCamera.cxx" />
+    <ClCompile Include="..\src\Video\Win32\WMF\Presenter\PresentEngine.cpp" />
+    <ClCompile Include="..\src\Video\Win32\WMF\Presenter\Presenter.cpp" />
+    <ClCompile Include="..\src\Video\Win32\WMF\Presenter\PresenterHelpers.cpp" />
+    <ClCompile Include="..\src\Video\Win32\WMF\Presenter\scheduler.cpp" />
+    <ClCompile Include="..\src\Video\Win32\WMF\WMFVideoPlayerImpl.cxx" />
+    <ClCompile Include="..\src\Video\Win32\WMF\WMFVideoPlayerPrivateImpl.cxx" />
+    <ClCompile Include="..\src\Video\Win32\WMF\WMFVideoPlayerTopology.cxx" />
+    <ClCompile Include="Precompiled.cxx">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precompiled.pch</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ForcedIncludeFiles>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\blocks\Cinder-KCB2\src\Kinect2.h" />
+    <ClInclude Include="..\include\Resources.h" />
+    <ClInclude Include="..\blocks\ImGui\include\CinderImGui.h" />
+    <ClInclude Include="..\blocks\ImGui\lib\imgui\imconfig.h" />
+    <ClInclude Include="..\blocks\ImGui\lib\imgui\imgui.h" />
+    <ClInclude Include="..\blocks\ImGui\lib\imgui\imgui_internal.h" />
+    <ClInclude Include="..\src\Common\Constants.h" />
+    <ClInclude Include="..\src\Common\Osc.h" />
+    <ClInclude Include="..\src\Common\OscSender.h" />
+    <ClInclude Include="..\src\Common\Types.h" />
+    <ClInclude Include="..\src\GravityWavesApp.h" />
+    <ClInclude Include="..\src\Rendering\Enities.h" />
+    <ClInclude Include="..\src\Rendering\ParticleSystem.h" />
+    <ClInclude Include="..\src\Video\DepthCamera.h" />
+    <ClInclude Include="..\src\Video\SlopeFieldGenerator.h" />
+    <ClInclude Include="..\src\Video\VideoPlayer.h" />
+    <ClInclude Include="..\src\Video\Win32\KinectDepthCamera.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\AsyncCB.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\BufferLock.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\ClassFactory.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\common.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\critsec.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\GrowArray.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\linklist.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\logging.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\logmediatype.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\mediatype.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\mfutils.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\PropVar.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\registry.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\TinyMap.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\common\trace.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\EVRPresenter.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\EVRPresenterUuid.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\PresentEngine.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\Presenter.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\PresenterHelpers.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\Presenter\scheduler.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\WMFVideoPlayerImpl.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\WMFVideoPlayerPrivateImpl.h" />
+    <ClInclude Include="..\src\Video\Win32\WMF\WMFVideoPlayerTopology.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

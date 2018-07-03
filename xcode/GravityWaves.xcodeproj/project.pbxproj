@@ -1,0 +1,600 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		006D720419952D00008149E2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006D720219952D00008149E2 /* AVFoundation.framework */; };
+		006D720519952D00008149E2 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006D720319952D00008149E2 /* CoreMedia.framework */; };
+		0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091D8F80E81B9330029341E /* OpenGL.framework */; };
+		00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784AF0FF439BC000DE1D7 /* Accelerate.framework */; };
+		00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
+		00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
+		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
+		00B9955A1B128DF400A5C623 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995581B128DF400A5C623 /* IOKit.framework */; };
+		00B9955B1B128DF400A5C623 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995591B128DF400A5C623 /* IOSurface.framework */; };
+		062F446FDD4C437AA15F4F60 /* imgui_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA5D80EAE5AB4B4398D76CBA /* imgui_demo.cpp */; };
+		19AD6FEE20DCC8EA005D768E /* GravityWavesApp.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 19AD6FAD20DCC8EA005D768E /* GravityWavesApp.cxx */; };
+		19AD6FEF20DCC8EA005D768E /* Constants.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 19AD6FAF20DCC8EA005D768E /* Constants.cxx */; };
+		19AD6FF020DCC8EA005D768E /* Osc.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 19AD6FB120DCC8EA005D768E /* Osc.cxx */; };
+		19AD6FF120DCC8EA005D768E /* OscSender.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 19AD6FB320DCC8EA005D768E /* OscSender.cxx */; };
+		19AD6FF220DCC8EA005D768E /* Types.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 19AD6FB520DCC8EA005D768E /* Types.cxx */; };
+		19AD6FF320DCC8EA005D768E /* DepthCamera.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 19AD6FB820DCC8EA005D768E /* DepthCamera.cxx */; };
+		19AD6FF420DCC8EA005D768E /* AVFVideoPlayerImpl.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 19AD6FBB20DCC8EA005D768E /* AVFVideoPlayerImpl.cxx */; };
+		19AD6FF520DCC8EA005D768E /* ImageSequenceDepthCamera.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 19AD6FBD20DCC8EA005D768E /* ImageSequenceDepthCamera.cxx */; };
+		19AD6FF620DCC8EA005D768E /* SlopeFieldGenerator.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 19AD6FBF20DCC8EA005D768E /* SlopeFieldGenerator.cxx */; };
+		19AD6FF720DCC8EA005D768E /* VideoPlayer.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 19AD6FC120DCC8EA005D768E /* VideoPlayer.cxx */; };
+		19AD700020DCC8EA005D768E /* Enities.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 19AD6FE920DCC8EA005D768E /* Enities.cxx */; };
+		19AD700120DCC8EA005D768E /* ParticleSystem.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 19AD6FEB20DCC8EA005D768E /* ParticleSystem.cxx */; };
+		23DBE64B22F4456DBBE243B9 /* CinderImGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA447D97340440B7A7F8C31B /* CinderImGui.cpp */; };
+		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
+		54BD5E2F25E44310AC96FE01 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 44A4543495C6487FA96F0EE3 /* CinderApp.icns */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		964335803C984DD5863F14C4 /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36A521E516A94B63B0B7979A /* imgui_draw.cpp */; };
+		D544C958B57D4C02964C8A02 /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F775E58AA5045BD91DC0488 /* imgui.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		19AD700820DCC91A005D768E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19AD700220DCC91A005D768E /* cinder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = cinder;
+		};
+		19AD700A20DCC91A005D768E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19AD700220DCC91A005D768E /* cinder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27C1FF771BD0AE3400AF387F;
+			remoteInfo = cinder_iphone;
+		};
+		19AD700C20DCC91A005D768E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19AD700220DCC91A005D768E /* cinder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27C100CF1BD16D4800AF387F;
+			remoteInfo = cinder_iphone_sim;
+		};
+		19AD700E20DCC923005D768E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19AD700220DCC91A005D768E /* cinder.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = cinder;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		006D720219952D00008149E2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		006D720319952D00008149E2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		0091D8F80E81B9330029341E /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		00B784AF0FF439BC000DE1D7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		00B784B10FF439BC000DE1D7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		00B784B20FF439BC000DE1D7 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		00B995581B128DF400A5C623 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		00B995591B128DF400A5C623 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		110FB01E779545EF83E5E368 /* imconfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = imconfig.h; path = ../blocks/ImGui/lib/imgui/imconfig.h; sourceTree = "<group>"; };
+		19AD6FAD20DCC8EA005D768E /* GravityWavesApp.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GravityWavesApp.cxx; path = ../src/GravityWavesApp.cxx; sourceTree = "<group>"; };
+		19AD6FAF20DCC8EA005D768E /* Constants.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Constants.cxx; sourceTree = "<group>"; };
+		19AD6FB020DCC8EA005D768E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		19AD6FB120DCC8EA005D768E /* Osc.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Osc.cxx; sourceTree = "<group>"; };
+		19AD6FB220DCC8EA005D768E /* Osc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Osc.h; sourceTree = "<group>"; };
+		19AD6FB320DCC8EA005D768E /* OscSender.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OscSender.cxx; sourceTree = "<group>"; };
+		19AD6FB420DCC8EA005D768E /* OscSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscSender.h; sourceTree = "<group>"; };
+		19AD6FB520DCC8EA005D768E /* Types.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Types.cxx; sourceTree = "<group>"; };
+		19AD6FB620DCC8EA005D768E /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
+		19AD6FB820DCC8EA005D768E /* DepthCamera.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DepthCamera.cxx; sourceTree = "<group>"; };
+		19AD6FB920DCC8EA005D768E /* DepthCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepthCamera.h; sourceTree = "<group>"; };
+		19AD6FBB20DCC8EA005D768E /* AVFVideoPlayerImpl.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AVFVideoPlayerImpl.cxx; sourceTree = "<group>"; };
+		19AD6FBC20DCC8EA005D768E /* AVFVideoPlayerImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVFVideoPlayerImpl.h; sourceTree = "<group>"; };
+		19AD6FBD20DCC8EA005D768E /* ImageSequenceDepthCamera.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageSequenceDepthCamera.cxx; sourceTree = "<group>"; };
+		19AD6FBE20DCC8EA005D768E /* ImageSequenceDepthCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSequenceDepthCamera.h; sourceTree = "<group>"; };
+		19AD6FBF20DCC8EA005D768E /* SlopeFieldGenerator.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SlopeFieldGenerator.cxx; sourceTree = "<group>"; };
+		19AD6FC020DCC8EA005D768E /* SlopeFieldGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlopeFieldGenerator.h; sourceTree = "<group>"; };
+		19AD6FC120DCC8EA005D768E /* VideoPlayer.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoPlayer.cxx; sourceTree = "<group>"; };
+		19AD6FC220DCC8EA005D768E /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
+		19AD6FE920DCC8EA005D768E /* Enities.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enities.cxx; sourceTree = "<group>"; };
+		19AD6FEA20DCC8EA005D768E /* Enities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enities.h; sourceTree = "<group>"; };
+		19AD6FEB20DCC8EA005D768E /* ParticleSystem.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleSystem.cxx; sourceTree = "<group>"; };
+		19AD6FEC20DCC8EA005D768E /* ParticleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleSystem.h; sourceTree = "<group>"; };
+		19AD6FED20DCC8EA005D768E /* GravityWavesApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GravityWavesApp.h; path = ../src/GravityWavesApp.h; sourceTree = "<group>"; };
+		19AD700220DCC91A005D768E /* cinder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cinder.xcodeproj; path = ../../Cinder/proj/xcode/cinder.xcodeproj; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		36A521E516A94B63B0B7979A /* imgui_draw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = imgui_draw.cpp; path = ../blocks/ImGui/lib/imgui/imgui_draw.cpp; sourceTree = "<group>"; };
+		3AC11E3037D34A3AA6BB52ED /* imgui_user.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = imgui_user.h; path = ../blocks/ImGui/lib/imgui/imgui_user.h; sourceTree = "<group>"; };
+		44A4543495C6487FA96F0EE3 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
+		45AFD5954F0E4055A080BB51 /* GravityWaves_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = GravityWaves_Prefix.pch; sourceTree = "<group>"; };
+		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
+		580A513FE53442DA89AB2EA9 /* imgui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = imgui.h; path = ../blocks/ImGui/lib/imgui/imgui.h; sourceTree = "<group>"; };
+		5F775E58AA5045BD91DC0488 /* imgui.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = imgui.cpp; path = ../blocks/ImGui/lib/imgui/imgui.cpp; sourceTree = "<group>"; };
+		6E2E39645DC64D95A3C29C97 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
+		7CB5A9D83938424B9B035419 /* imgui_internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = imgui_internal.h; path = ../blocks/ImGui/lib/imgui/imgui_internal.h; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* GravityWaves.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GravityWaves.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A5ABDFC0CF84C8FB9C84AA5 /* imgui_user.inl */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; name = imgui_user.inl; path = ../blocks/ImGui/lib/imgui/imgui_user.inl; sourceTree = "<group>"; };
+		C98846005B3341CC9F577D10 /* CinderImGui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CinderImGui.h; path = ../blocks/ImGui/include/CinderImGui.h; sourceTree = "<group>"; };
+		DA5D80EAE5AB4B4398D76CBA /* imgui_demo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = imgui_demo.cpp; path = ../blocks/ImGui/lib/imgui/imgui_demo.cpp; sourceTree = "<group>"; };
+		FA447D97340440B7A7F8C31B /* CinderImGui.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = CinderImGui.cpp; path = ../blocks/ImGui/src/CinderImGui.cpp; sourceTree = "<group>"; };
+		FFDE2D94F8024F799C93E7A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				006D720419952D00008149E2 /* AVFoundation.framework in Frameworks */,
+				006D720519952D00008149E2 /* CoreMedia.framework in Frameworks */,
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */,
+				5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */,
+				00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */,
+				00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */,
+				00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */,
+				00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */,
+				00B9955A1B128DF400A5C623 /* IOKit.framework in Frameworks */,
+				00B9955B1B128DF400A5C623 /* IOSurface.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01B97315FEAEA392516A2CEA /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				6437E5B0CFE149438674B80A /* ImGui */,
+			);
+			name = Blocks;
+			sourceTree = "<group>";
+		};
+		080E96DDFE201D6D7F000001 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				19AD6FAE20DCC8EA005D768E /* Common */,
+				19AD6FAD20DCC8EA005D768E /* GravityWavesApp.cxx */,
+				19AD6FED20DCC8EA005D768E /* GravityWavesApp.h */,
+				19AD6FE820DCC8EA005D768E /* Rendering */,
+				19AD6FB720DCC8EA005D768E /* Video */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				006D720219952D00008149E2 /* AVFoundation.framework */,
+				006D720319952D00008149E2 /* CoreMedia.framework */,
+				00B784AF0FF439BC000DE1D7 /* Accelerate.framework */,
+				00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */,
+				00B784B10FF439BC000DE1D7 /* AudioUnit.framework */,
+				00B784B20FF439BC000DE1D7 /* CoreAudio.framework */,
+				5323E6B10EAFCA74003A9687 /* CoreVideo.framework */,
+				0091D8F80E81B9330029341E /* OpenGL.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				00B995581B128DF400A5C623 /* IOKit.framework */,
+				00B995591B128DF400A5C623 /* IOSurface.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19AD6FAE20DCC8EA005D768E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				19AD6FAF20DCC8EA005D768E /* Constants.cxx */,
+				19AD6FB020DCC8EA005D768E /* Constants.h */,
+				19AD6FB120DCC8EA005D768E /* Osc.cxx */,
+				19AD6FB220DCC8EA005D768E /* Osc.h */,
+				19AD6FB320DCC8EA005D768E /* OscSender.cxx */,
+				19AD6FB420DCC8EA005D768E /* OscSender.h */,
+				19AD6FB520DCC8EA005D768E /* Types.cxx */,
+				19AD6FB620DCC8EA005D768E /* Types.h */,
+			);
+			name = Common;
+			path = ../src/Common;
+			sourceTree = "<group>";
+		};
+		19AD6FB720DCC8EA005D768E /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				19AD6FB820DCC8EA005D768E /* DepthCamera.cxx */,
+				19AD6FB920DCC8EA005D768E /* DepthCamera.h */,
+				19AD6FBA20DCC8EA005D768E /* OSX */,
+				19AD6FBF20DCC8EA005D768E /* SlopeFieldGenerator.cxx */,
+				19AD6FC020DCC8EA005D768E /* SlopeFieldGenerator.h */,
+				19AD6FC120DCC8EA005D768E /* VideoPlayer.cxx */,
+				19AD6FC220DCC8EA005D768E /* VideoPlayer.h */,
+			);
+			name = Video;
+			path = ../src/Video;
+			sourceTree = "<group>";
+		};
+		19AD6FBA20DCC8EA005D768E /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				19AD6FBB20DCC8EA005D768E /* AVFVideoPlayerImpl.cxx */,
+				19AD6FBC20DCC8EA005D768E /* AVFVideoPlayerImpl.h */,
+				19AD6FBD20DCC8EA005D768E /* ImageSequenceDepthCamera.cxx */,
+				19AD6FBE20DCC8EA005D768E /* ImageSequenceDepthCamera.h */,
+			);
+			path = OSX;
+			sourceTree = "<group>";
+		};
+		19AD6FE820DCC8EA005D768E /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				19AD6FE920DCC8EA005D768E /* Enities.cxx */,
+				19AD6FEA20DCC8EA005D768E /* Enities.h */,
+				19AD6FEB20DCC8EA005D768E /* ParticleSystem.cxx */,
+				19AD6FEC20DCC8EA005D768E /* ParticleSystem.h */,
+			);
+			name = Rendering;
+			path = ../src/Rendering;
+			sourceTree = "<group>";
+		};
+		19AD700320DCC91A005D768E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				19AD700920DCC91A005D768E /* libcinder.a */,
+				19AD700B20DCC91A005D768E /* libcinder.a */,
+				19AD700D20DCC91A005D768E /* libcinder.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* GravityWaves.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* GravityWaves */ = {
+			isa = PBXGroup;
+			children = (
+				19AD700220DCC91A005D768E /* cinder.xcodeproj */,
+				01B97315FEAEA392516A2CEA /* Blocks */,
+				29B97315FDCFA39411CA2CEA /* Headers */,
+				080E96DDFE201D6D7F000001 /* Source */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = GravityWaves;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				6E2E39645DC64D95A3C29C97 /* Resources.h */,
+				45AFD5954F0E4055A080BB51 /* GravityWaves_Prefix.pch */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				44A4543495C6487FA96F0EE3 /* CinderApp.icns */,
+				FFDE2D94F8024F799C93E7A9 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6184AD510F5840DA90D8850B /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C98846005B3341CC9F577D10 /* CinderImGui.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		6437E5B0CFE149438674B80A /* ImGui */ = {
+			isa = PBXGroup;
+			children = (
+				6184AD510F5840DA90D8850B /* include */,
+				FC661885C3E0446E8E6D5A57 /* lib */,
+				B466B521D264435E9AC3DFFB /* src */,
+			);
+			name = ImGui;
+			sourceTree = "<group>";
+		};
+		B466B521D264435E9AC3DFFB /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FA447D97340440B7A7F8C31B /* CinderImGui.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		E94F7E384E6840F08B6B7B80 /* imgui */ = {
+			isa = PBXGroup;
+			children = (
+				110FB01E779545EF83E5E368 /* imconfig.h */,
+				580A513FE53442DA89AB2EA9 /* imgui.h */,
+				7CB5A9D83938424B9B035419 /* imgui_internal.h */,
+				3AC11E3037D34A3AA6BB52ED /* imgui_user.h */,
+				9A5ABDFC0CF84C8FB9C84AA5 /* imgui_user.inl */,
+				5F775E58AA5045BD91DC0488 /* imgui.cpp */,
+				36A521E516A94B63B0B7979A /* imgui_draw.cpp */,
+				DA5D80EAE5AB4B4398D76CBA /* imgui_demo.cpp */,
+			);
+			name = imgui;
+			sourceTree = "<group>";
+		};
+		FC661885C3E0446E8E6D5A57 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				E94F7E384E6840F08B6B7B80 /* imgui */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* GravityWaves */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "GravityWaves" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				19AD700F20DCC923005D768E /* PBXTargetDependency */,
+			);
+			name = GravityWaves;
+			productInstallPath = "$(HOME)/Applications";
+			productName = GravityWaves;
+			productReference = 8D1107320486CEB800E47090 /* GravityWaves.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "GravityWaves" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* GravityWaves */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 19AD700320DCC91A005D768E /* Products */;
+					ProjectRef = 19AD700220DCC91A005D768E /* cinder.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* GravityWaves */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		19AD700920DCC91A005D768E /* libcinder.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libcinder.a;
+			remoteRef = 19AD700820DCC91A005D768E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		19AD700B20DCC91A005D768E /* libcinder.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libcinder.a;
+			remoteRef = 19AD700A20DCC91A005D768E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		19AD700D20DCC91A005D768E /* libcinder.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libcinder.a;
+			remoteRef = 19AD700C20DCC91A005D768E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54BD5E2F25E44310AC96FE01 /* CinderApp.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23DBE64B22F4456DBBE243B9 /* CinderImGui.cpp in Sources */,
+				19AD6FF020DCC8EA005D768E /* Osc.cxx in Sources */,
+				19AD6FF720DCC8EA005D768E /* VideoPlayer.cxx in Sources */,
+				19AD6FEF20DCC8EA005D768E /* Constants.cxx in Sources */,
+				19AD6FF520DCC8EA005D768E /* ImageSequenceDepthCamera.cxx in Sources */,
+				19AD6FF420DCC8EA005D768E /* AVFVideoPlayerImpl.cxx in Sources */,
+				19AD6FEE20DCC8EA005D768E /* GravityWavesApp.cxx in Sources */,
+				19AD6FF120DCC8EA005D768E /* OscSender.cxx in Sources */,
+				D544C958B57D4C02964C8A02 /* imgui.cpp in Sources */,
+				19AD6FF220DCC8EA005D768E /* Types.cxx in Sources */,
+				964335803C984DD5863F14C4 /* imgui_draw.cpp in Sources */,
+				19AD6FF320DCC8EA005D768E /* DepthCamera.cxx in Sources */,
+				19AD700120DCC8EA005D768E /* ParticleSystem.cxx in Sources */,
+				19AD700020DCC8EA005D768E /* Enities.cxx in Sources */,
+				062F446FDD4C437AA15F4F60 /* imgui_demo.cpp in Sources */,
+				19AD6FF620DCC8EA005D768E /* SlopeFieldGenerator.cxx in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		19AD700F20DCC923005D768E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = cinder;
+			targetProxy = 19AD700E20DCC923005D768E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = GravityWaves_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/macosx/$(CONFIGURATION)/libcinder.a\"";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = GravityWaves;
+				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_FAST_MATH = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = GravityWaves_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NDEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/macosx/$(CONFIGURATION)/libcinder.a\"";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = GravityWaves;
+				STRIP_INSTALLED_PRODUCT = YES;
+				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CINDER_PATH = ../../Cinder;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				ENABLE_TESTABILITY = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(CINDER_PATH)/include\"",
+					../src,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../blocks/ImGui/lib/imgui ../blocks/ImGui/include";
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CINDER_PATH = ../../Cinder;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(CINDER_PATH)/include\"",
+					../src,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../blocks/ImGui/lib/imgui ../blocks/ImGui/include";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "GravityWaves" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "GravityWaves" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
