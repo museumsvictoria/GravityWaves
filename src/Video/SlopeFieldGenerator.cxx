@@ -14,7 +14,7 @@ namespace Video
     SlopeFieldGenerator::SlopeFieldGenerator ( const ivec2& size )
     {
 #ifdef CINDER_MAC
-		MinDepth = 0.229f;
+        MinDepth = 0.229f;
         PeakThreshold = 0.2279f;;
 #else
 #endif

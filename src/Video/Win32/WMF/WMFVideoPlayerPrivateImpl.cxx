@@ -149,10 +149,10 @@ namespace Video
             return cleanup();
         }
 
-		if (eventType == MESourceSeeked || eventType == MEStreamSeeked)
-		{
-			Info("GOT SEEK!");
-		}
+        if (eventType == MESourceSeeked || eventType == MEStreamSeeked)
+        {
+            Info("GOT SEEK!");
+        }
 
         if ( eventType == MESessionClosed )
         {
@@ -181,34 +181,34 @@ namespace Video
         auto cleanup = [&] ( HRESULT r ) -> HRESULT
         {
             if ( FAILED ( r ) )
-	        {
-		        _state = PlayerState::Closed;
+            {
+                _state = PlayerState::Closed;
 
-		        switch ( r )
-		        {
+                switch ( r )
+                {
                     case MF_E_SOURCERESOLVER_MUTUALLY_EXCLUSIVE_FLAGS :
                     {
-			            Error("MF_E_SOURCERESOLVER_MUTUALLY_EXCLUSIVE_FLAGS"); 
+                        Error("MF_E_SOURCERESOLVER_MUTUALLY_EXCLUSIVE_FLAGS"); 
                         break;
                     }
 
-		            case MF_E_UNSUPPORTED_SCHEME :
+                    case MF_E_UNSUPPORTED_SCHEME :
                     {
-			            Error("MF_E_UNSUPPORTED_SCHEME"); 
+                        Error("MF_E_UNSUPPORTED_SCHEME"); 
                         break;
                     }
 
-		            case MF_E_UNSUPPORTED_BYTESTREAM_TYPE :
+                    case MF_E_UNSUPPORTED_BYTESTREAM_TYPE :
                     {
-			            Error("MF_E_UNSUPPORTED_BYTESTREAM_TYPE"); 
+                        Error("MF_E_UNSUPPORTED_BYTESTREAM_TYPE"); 
                         break;
                     }
 
-		            default:
-			            Error("Unknown eror"); 
+                    default:
+                        Error("Unknown eror"); 
                         break;
-	   	        }
-	        }
+                }
+            }
 
             return r;
         };
@@ -216,22 +216,22 @@ namespace Video
         #define CHECK(hr) if(FAILED(hr)) return cleanup(hr);
 
         HRESULT result = CreateSession();
-	    CHECK( result );
+        CHECK( result );
 
-	    result = CreateMediaSource( sURL, &_source);
-	    CHECK( result );
+        result = CreateMediaSource( sURL, &_source);
+        CHECK( result );
 
-	    EndOpenURL( audioDeviceId );
+        EndOpenURL( audioDeviceId );
 
-	    return result;
+        return result;
     }
-	
-    HRESULT	WMFVideoPlayerPrivateImpl::EndOpenURL ( const WCHAR * audioDeviceId )
+    
+    HRESULT WMFVideoPlayerPrivateImpl::EndOpenURL ( const WCHAR * audioDeviceId )
     {
         HRESULT result;
 
-	    IMFTopology *pTopology = nullptr;
-	    IMFPresentationDescriptor* pSourcePD = nullptr;
+        IMFTopology *pTopology = nullptr;
+        IMFPresentationDescriptor* pSourcePD = nullptr;
 
         auto cleanup = [&] ( HRESULT r ) -> HRESULT
         {
@@ -248,18 +248,18 @@ namespace Video
         #define CHECK(hr) if(FAILED(hr)) return cleanup(hr);
 
         result = _source->CreatePresentationDescriptor(&pSourcePD);
-	    CHECK( result );
+        CHECK( result );
 
         result = CreatePlaybackTopology(_source, pSourcePD, _videoWindow, &pTopology, _presenter, audioDeviceId);
-	    CHECK( result );
+        CHECK( result );
 
-	    SetMediaInfo(pSourcePD);
+        SetMediaInfo(pSourcePD);
         
         result = _session->SetTopology(0, pTopology);
-	    CHECK( result );
+        CHECK( result );
 
         _state = PlayerState::OpenPending;
-	    _volume = 1.0f;
+        _volume = 1.0f;
 
         _isFinished = false;
 
@@ -268,7 +268,7 @@ namespace Video
 
     HRESULT WMFVideoPlayerPrivateImpl::Play ( )
     {
-		_lastKnownTime = 0.0f;
+        _lastKnownTime = 0.0f;
 
         if ( _state != PlayerState::Paused && _state != PlayerState::Stopped )
         {
@@ -389,7 +389,7 @@ namespace Video
 
         return S_OK;
     }
-	    
+        
     float WMFVideoPlayerPrivateImpl::PlaybackRate ( )
     {
         HRESULT result = S_OK;
@@ -417,7 +417,7 @@ namespace Video
 
     void WMFVideoPlayerPrivateImpl::Volume ( float volume )
     {
-		_volume = volume;
+        _volume = volume;
 
         if ( !_session )
         {
@@ -442,7 +442,7 @@ namespace Video
             _volumeControl->SetChannelVolume ( i, volume );
         }
 
-		//Info("Volume successfully set to " + std::to_string(_volume));
+        //Info("Volume successfully set to " + std::to_string(_volume));
     }
     
     float WMFVideoPlayerPrivateImpl::Volume ( ) const
@@ -456,48 +456,48 @@ namespace Video
         if ( !_source ) return 0.0f;
 
         IMFPresentationDescriptor * descriptor = nullptr;
-	    HRESULT result = _source->CreatePresentationDescriptor ( &descriptor );
-	    if ( SUCCEEDED ( result ) ) 
+        HRESULT result = _source->CreatePresentationDescriptor ( &descriptor );
+        if ( SUCCEEDED ( result ) ) 
         {
-		    UINT64 longDuration = 0;
-		    result = descriptor->GetUINT64(MF_PD_DURATION, &longDuration);
-		    if (SUCCEEDED(result))
-			    duration = (float)longDuration / 10000000.0;
-    	}
-	    SafeRelease(&descriptor);
-	    return duration;
+            UINT64 longDuration = 0;
+            result = descriptor->GetUINT64(MF_PD_DURATION, &longDuration);
+            if (SUCCEEDED(result))
+                duration = (float)longDuration / 10000000.0;
+        }
+        SafeRelease(&descriptor);
+        return duration;
     }
     
     float WMFVideoPlayerPrivateImpl::Time ( )
     {
-		if ( _state != PlayerState::Started ) return _lastKnownTime;
+        if ( _state != PlayerState::Started ) return _lastKnownTime;
 
-	    float position = _lastKnownTime;
-		if (_session == nullptr) return _lastKnownTime;
+        float position = _lastKnownTime;
+        if (_session == nullptr) return _lastKnownTime;
 
-	    IMFPresentationClock *clock = nullptr;
-	    HRESULT result = _session->GetClock((IMFClock **)&clock);
-	
-	    if (SUCCEEDED(result)) 
+        IMFPresentationClock *clock = nullptr;
+        HRESULT result = _session->GetClock((IMFClock **)&clock);
+    
+        if (SUCCEEDED(result)) 
         {
-		    MFTIME longPosition = 0;
-		    result = clock->GetTime(&longPosition);
-			if (SUCCEEDED(result))
-			{
-				position = (float)longPosition / 10000000.0;
-				_lastKnownTime = position;
-			}
-	    }
+            MFTIME longPosition = 0;
+            result = clock->GetTime(&longPosition);
+            if (SUCCEEDED(result))
+            {
+                position = (float)longPosition / 10000000.0;
+                _lastKnownTime = position;
+            }
+        }
 
-	    SafeRelease(&clock);
-	    return position;
+        SafeRelease(&clock);
+        return position;
     }
 
     bool WMFVideoPlayerPrivateImpl::SeekToTime ( float time )
     {
-		float d = Duration();
-		if (time > d - 1.0f) time = d - 1.0f;
-		if (time < 0.0f) time = 0.0f;
+        float d = Duration();
+        if (time > d - 1.0f) time = d - 1.0f;
+        if (time < 0.0f) time = 0.0f;
 
         if ( _state == PlayerState::OpenPending )
         {
@@ -505,14 +505,14 @@ namespace Video
             return false; 
         }
 
-		if (_state == PlayerState::Seeking)
-		{
-			return false;
-		}
+        if (_state == PlayerState::Seeking)
+        {
+            return false;
+        }
 
-		//PlaybackRate(0.0f);
+        //PlaybackRate(0.0f);
 
-		PlayerState currentState = _state;
+        PlayerState currentState = _state;
         
         PROPVARIANT start;
         PropVariantInit ( &start );
@@ -525,7 +525,7 @@ namespace Video
         if ( SUCCEEDED ( result ) )
         {
             _state = PlayerState::Seeking;
-			_afterSeekState = currentState;
+            _afterSeekState = currentState;
             if ( currentState == PlayerState::Stopped ) Stop();
             if ( currentState == PlayerState::Paused ) Pause();
         }
@@ -564,10 +564,10 @@ namespace Video
         return _videoDisplay != nullptr;
     }
     
-	void WMFVideoPlayerPrivateImpl::OnComplete(CompleteFn handler)
-	{
-		_onComplete = handler;
-	}
+    void WMFVideoPlayerPrivateImpl::OnComplete(CompleteFn handler)
+    {
+        _onComplete = handler;
+    }
 
     WMFVideoPlayerPrivateImpl::WMFVideoPlayerPrivateImpl ( HWND videoWindow, HWND eventWindow )
     : _videoWindow(videoWindow)
@@ -617,7 +617,7 @@ namespace Video
 
         _state = PlayerState::Ready;
 
-		Volume(_volume);
+        Volume(_volume);
 
         return result;
     }
@@ -681,7 +681,7 @@ namespace Video
 
         PropVariantClear ( &start );
         
-		Volume(_volume);
+        Volume(_volume);
         _isFinished = false;
         return result;
     }
@@ -762,16 +762,16 @@ namespace Video
             case MESessionStarted :
             {
                 Info ( "Session Started" );
-				Volume(_volume);
+                Volume(_volume);
 
-				if (_state == PlayerState::Seeking)
-				{
-					Info("Seek finished!");
-					_state = PlayerState::Started;
-					if (_afterSeekState == PlayerState::Stopped) Stop();
-					if (_afterSeekState == PlayerState::Paused) Pause();
-					_afterSeekState = PlayerState::Closed;
-				}
+                if (_state == PlayerState::Seeking)
+                {
+                    Info("Seek finished!");
+                    _state = PlayerState::Started;
+                    if (_afterSeekState == PlayerState::Stopped) Stop();
+                    if (_afterSeekState == PlayerState::Paused) Pause();
+                    _afterSeekState = PlayerState::Closed;
+                }
 
                 break;
             }
@@ -788,23 +788,23 @@ namespace Video
                 break;
             }
 
-			case MEUpdatedStream:
-			{
-				Info("Stream Updated!");
-				break;
-			}
+            case MEUpdatedStream:
+            {
+                Info("Stream Updated!");
+                break;
+            }
 
-			/*case MESourceSeeked:
-			{
-				Info("Seeked!");
-				break;
-			}
+            /*case MESourceSeeked:
+            {
+                Info("Seeked!");
+                break;
+            }
 
-			case MEStreamSeeked:
-			{
-				Info("Seeked!");
-				break;
-			}*/
+            case MEStreamSeeked:
+            {
+                Info("Seeked!");
+                break;
+            }*/
 
             default :
             {
@@ -924,16 +924,16 @@ namespace Video
             }
 
             PropVariantClear ( &start );*/
-			//SeekToTime(0.0f);
-			Stop();
-			Play();
-			std::cout << "LOOP!\n";
+            //SeekToTime(0.0f);
+            Stop();
+            Play();
+            std::cout << "LOOP!\n";
         }else
         {
             _state = PlayerState::Stopped;
             _isFinished = true;
 
-			if (_onComplete) _onComplete();
+            if (_onComplete) _onComplete();
             // @TODO(andrew): Notify public interface
         }
 

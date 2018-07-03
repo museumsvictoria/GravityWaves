@@ -22,7 +22,7 @@
 
 
 namespace Video
-{		
+{       
     template <class T> void SafeRelease ( T ** t )
     {
         if ( *t )
@@ -36,25 +36,25 @@ namespace Video
   
     enum class PlayerState
     {
-        Closed = 0,			// No session.
-        Ready,				// Session was created, ready to open a file. 
-	    OpenAsyncPending,	// Session is creating URL resource
-	    OpenAsyncComplete,	// Session finished opening URL
-        OpenPending,		// Session is opening a file.
-        Started,			// Session is playing a file.
-        Paused,				// Session is paused.
-        Stopped,			// Session is stopped (ready to play). 
-        Closing,			// Application has closed the session, but is waiting for MESessionClosed.
-		Seeking
+        Closed = 0,         // No session.
+        Ready,              // Session was created, ready to open a file. 
+        OpenAsyncPending,   // Session is creating URL resource
+        OpenAsyncComplete,  // Session finished opening URL
+        OpenPending,        // Session is opening a file.
+        Started,            // Session is playing a file.
+        Paused,             // Session is paused.
+        Stopped,            // Session is stopped (ready to play). 
+        Closing,            // Application has closed the session, but is waiting for MESessionClosed.
+        Seeking
     };
 
     class WMFVideoPlayerPrivateImpl
     : public IMFAsyncCallback
-	{
+    {
         friend class WMFVideoPlayerImpl;
     public:
 
-		using CompleteFn =						std::function < void() > ;
+        using CompleteFn =                      std::function < void() > ;
 
         static HRESULT                          CreateInstance      ( HWND videoWindow, HWND eventWindow, WMFVideoPlayerPrivateImpl ** player );
 
@@ -65,7 +65,7 @@ namespace Video
         STDMETHODIMP                            Invoke              ( IMFAsyncResult * result ) override;
 
         HRESULT                                 OpenURL             ( const WCHAR * sURL, const WCHAR * audioDeviceId = 0 );
-	    HRESULT			                        EndOpenURL          ( const WCHAR * audioDeviceId = 0 );
+        HRESULT                                 EndOpenURL          ( const WCHAR * audioDeviceId = 0 );
 
         HRESULT                                 Play                ( );
         HRESULT                                 Pause               ( );
@@ -73,8 +73,8 @@ namespace Video
         HRESULT                                 Shutdown            ( );
         HRESULT                                 GetBufferProgress   ( DWORD * progress );
         
-        HRESULT		                            PlaybackRate        ( float rateRequested, BOOL bThin = false );
-	    float		                            PlaybackRate        ( );
+        HRESULT                                 PlaybackRate        ( float rateRequested, BOOL bThin = false );
+        float                                   PlaybackRate        ( );
         
         void                                    Volume              ( float volume );
         float                                   Volume              ( ) const;
@@ -93,8 +93,8 @@ namespace Video
         PlayerState                             GetState            ( ) const;
         bool                                    HasVideo            ( ) const;
 
-		void									OnComplete			( CompleteFn handler );
-		bool									IsLooping{false};
+        void                                    OnComplete          ( CompleteFn handler );
+        bool                                    IsLooping{false};
                 
     protected:
 
@@ -134,12 +134,12 @@ namespace Video
 
         bool                                    _isFinished{false};
         
-		CompleteFn								_onComplete;
+        CompleteFn                              _onComplete;
         HANDLE                                  _closeEvent{nullptr};      
         PlayerState                             _state{PlayerState::Closed};
-		PlayerState								_afterSeekState{ PlayerState::Closed };
-		float									_lastKnownTime{ 0.0f };
-	};
+        PlayerState                             _afterSeekState{ PlayerState::Closed };
+        float                                   _lastKnownTime{ 0.0f };
+    };
 }
 
 #endif

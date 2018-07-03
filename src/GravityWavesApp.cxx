@@ -25,14 +25,14 @@ static std::vector<float> kBlackholeXPositions;
 
 void GravityWavesApp::setup()
 {
-	randSeed(clock());
+    randSeed(clock());
     ui::initialize();
-	
-	#ifdef CINDER_MSW
-	// Disable crash dialog
-	DWORD dwMode = SetErrorMode(SEM_NOGPFAULTERRORBOX);
-	SetErrorMode(dwMode | SEM_NOGPFAULTERRORBOX);
-	#endif
+    
+    #ifdef CINDER_MSW
+    // Disable crash dialog
+    DWORD dwMode = SetErrorMode(SEM_NOGPFAULTERRORBOX);
+    SetErrorMode(dwMode | SEM_NOGPFAULTERRORBOX);
+    #endif
 
     hideCursor();
     
@@ -64,30 +64,30 @@ void GravityWavesApp::setup()
     _depthCamera->Start();
     _slopeGenerator = std::make_unique<Video::SlopeFieldGenerator> ( ivec2 ( 512, 424 ) );
 
-	{
-		auto tFmt = gl::Texture::Format().minFilter(GL_LINEAR).magFilter(GL_LINEAR).wrap(GL_MIRRORED_REPEAT);
-		_backgroundImage = gl::Texture::create(loadImage(app::loadAsset("Textures/galaxy3.png")), tFmt);
-		_galaxyBuffer = gl::Fbo::create(app::getWindowWidth(), app::getWindowHeight(), gl::Fbo::Format().samples(0).colorTexture(tFmt));
-	}
+    {
+        auto tFmt = gl::Texture::Format().minFilter(GL_LINEAR).magFilter(GL_LINEAR).wrap(GL_MIRRORED_REPEAT);
+        _backgroundImage = gl::Texture::create(loadImage(app::loadAsset("Textures/galaxy3.png")), tFmt);
+        _galaxyBuffer = gl::Fbo::create(app::getWindowWidth(), app::getWindowHeight(), gl::Fbo::Format().samples(0).colorTexture(tFmt));
+    }
 
-	_stars = std::make_shared<Video::VideoPlayer>();
-	_stars->Loops(true);
-	_stars->Play ( app::getAssetPath("Video/Space.mp4").string() );
+    _stars = std::make_shared<Video::VideoPlayer>();
+    _stars->Loops(true);
+    _stars->Play ( app::getAssetPath("Video/Space.mp4").string() );
     
     _blackholes.resize ( K::MaxBlackHoles );
     
     kBlackholeVelocities.resize ( K::MaxBlackHoles );
     kBlackholeXPositions.resize ( K::MaxBlackHoles );
 
-	{
-		auto fmt = gl::GlslProg::Format().define ( "MAX_BLACK_HOLES", std::to_string ( _blackholes.size() ) );
-		fmt.vertex ( app::loadAsset ( "Shaders/BlackHole.vs.glsl" ) );
-		fmt.fragment ( app::loadAsset ( "Shaders/BlackHole.fs.glsl" ) );
-		fmt.fragDataLocation ( 0, "FinalColor" );
-		
-		_blackHoleShader = gl::GlslProg::create ( fmt );
-		_blackHoleShader->uniform ( "uAspectRatio", 1.0f / app::getWindowAspectRatio() );
-	}
+    {
+        auto fmt = gl::GlslProg::Format().define ( "MAX_BLACK_HOLES", std::to_string ( _blackholes.size() ) );
+        fmt.vertex ( app::loadAsset ( "Shaders/BlackHole.vs.glsl" ) );
+        fmt.fragment ( app::loadAsset ( "Shaders/BlackHole.fs.glsl" ) );
+        fmt.fragDataLocation ( 0, "FinalColor" );
+        
+        _blackHoleShader = gl::GlslProg::create ( fmt );
+        _blackHoleShader->uniform ( "uAspectRatio", 1.0f / app::getWindowAspectRatio() );
+    }
     
     static const std::string kDefaultFileName = "Default.json";
     
@@ -133,17 +133,17 @@ void GravityWavesApp::keyDown ( KeyEvent event )
 
 void GravityWavesApp::update()
 {
-	static double kBefore = getElapsedSeconds();
-	double now = getElapsedSeconds();
-	double dt = now - kBefore;
-	kBefore = now;
-	dt = 1.0f;
+    static double kBefore = getElapsedSeconds();
+    double now = getElapsedSeconds();
+    double dt = now - kBefore;
+    kBefore = now;
+    dt = 1.0f;
     
-	_stars->Update();
+    _stars->Update();
     _particles->Update ( 1.0 / 60.0f );
     
-	for ( int i = 0; i < _blackholes.size(); i++ )
-	{
+    for ( int i = 0; i < _blackholes.size(); i++ )
+    {
         auto& a = _blackholes[i];
         a.Heat *= K::CoolRate;
         a.Heat = glm::clamp(a.Heat, 0.01f, 1.0f);
@@ -156,20 +156,20 @@ void GravityWavesApp::update()
             }
         }
         
-		for ( int j = i + 1; j < _blackholes.size(); j++ )
-		{
-			auto& b = _blackholes[j];
-			a.Interact(b, dt);
-		}
-	}
+        for ( int j = i + 1; j < _blackholes.size(); j++ )
+        {
+            auto& b = _blackholes[j];
+            a.Interact(b, dt);
+        }
+    }
 
-	for ( auto& a : _attractors )
-	{
-		for ( auto& b : _blackholes )
-		{
-			b.Interact(a, dt);
-		}
-	}
+    for ( auto& a : _attractors )
+    {
+        for ( auto& b : _blackholes )
+        {
+            b.Interact(a, dt);
+        }
+    }
     
     if ( K::AllowCollisions )
     {
@@ -223,15 +223,15 @@ void GravityWavesApp::update()
     }
     
     
-	for ( auto& b : _blackholes )
-	{
-		b.Tick ( dt );
+    for ( auto& b : _blackholes )
+    {
+        b.Tick ( dt );
         
         if ( b.Heat >= 1.0f )
         {
             CreateEndgame ( b );
         }
-	}
+    }
     
     if ( _endgame )
     {
@@ -380,22 +380,22 @@ void GravityWavesApp::CreateEndgame ( const E::Blackhole& master )
 
 void GravityWavesApp::draw()
 {
-	gl::clear(Color(0, 0, 0));
+    gl::clear(Color(0, 0, 0));
     vec2 windowSize = getWindowSize();
 
-	{
-		gl::ScopedFramebuffer fbo{ _galaxyBuffer };
-		gl::clear();
+    {
+        gl::ScopedFramebuffer fbo{ _galaxyBuffer };
+        gl::clear();
 
-		gl::ScopedColor color{ ColorAf::white() };
-		gl::draw(_backgroundImage, _galaxyBuffer->getBounds());
+        gl::ScopedColor color{ ColorAf::white() };
+        gl::draw(_backgroundImage, _galaxyBuffer->getBounds());
 
-		if (_stars)
-		{
-			gl::ScopedBlendAdditive blend;
-			_stars->Draw (_galaxyBuffer->getBounds());
-		}
-	}
+        if (_stars)
+        {
+            gl::ScopedBlendAdditive blend;
+            _stars->Draw (_galaxyBuffer->getBounds());
+        }
+    }
 
     #pragma mark region blackhole rendering
     {
@@ -463,14 +463,14 @@ void GravityWavesApp::draw()
     #pragma mark region particle system
     _particles->Draw();
 
-	auto biasUV = [](const vec2& uv)
-	{
-		return uv;
-		vec2 r = uv;
-		float scale = lerp(1.0f, 3.0f, easeOutQuad(r.y));
-		r.y = std::pow(r.y, scale);
-		return r;
-	};
+    auto biasUV = [](const vec2& uv)
+    {
+        return uv;
+        vec2 r = uv;
+        float scale = lerp(1.0f, 3.0f, easeOutQuad(r.y));
+        r.y = std::pow(r.y, scale);
+        return r;
+    };
     
     if ( K::ReactToVectorField )
     {
@@ -623,15 +623,15 @@ void GravityWavesApp::draw()
 
     if ( _renderUI )
     {
-		bool doSave = false;
-		bool doLoad = false;
+        bool doSave = false;
+        bool doLoad = false;
         {
             ui::ScopedWindow window { "Settings" };
             ui::Text ( "%.2f FPS | %d Black Holes", getAverageFps(), (int)_blackholes.size() );
             
             if ( ui::Button ( "Save Session" ) )
             {
-				doSave = true;               
+                doSave = true;               
             }
             ui::SameLine();
             if ( ui::Button("Load Session" ) )
@@ -648,8 +648,8 @@ void GravityWavesApp::draw()
                 
                 ui::InputText ( "OSC Endpoint", &K::OSCEndpoint );
                 ui::InputInt ( "OSC Port", &K::OSCPort );
-				ui::DragInt ( "OSC Send Frame Delay", &K::OSCSendDelay, 0.0f, 1, 600 );
-				ui::Checkbox ( "OSC Send Messages Packed", &K::OSCSendAllPacked );
+                ui::DragInt ( "OSC Send Frame Delay", &K::OSCSendDelay, 0.0f, 1, 600 );
+                ui::Checkbox ( "OSC Send Messages Packed", &K::OSCSendAllPacked );
                 
                 if ( ui::Button( "Reconnect" ) )
                 {
@@ -674,46 +674,46 @@ void GravityWavesApp::draw()
             ui::DragInt( "Emission Rate During Endgame", &K::EmissionRateDuringEndgame, 0, 0, 16 );
         }
 
-		if (doSave)
-		{
-			auto p = getSaveFilePath();
-			if (!p.empty())
-			{
-				JsonTree tree;
-				Serialize(tree);
-				tree.write(p);
-			}
-		}
+        if (doSave)
+        {
+            auto p = getSaveFilePath();
+            if (!p.empty())
+            {
+                JsonTree tree;
+                Serialize(tree);
+                tree.write(p);
+            }
+        }
 
-		if (doLoad)
-		{
-			try
-			{
-				auto p = getOpenFilePath();
-				if (!p.empty())
-				{
-					JsonTree tree{ loadFile(p) };
-					Marshal(tree);
+        if (doLoad)
+        {
+            try
+            {
+                auto p = getOpenFilePath();
+                if (!p.empty())
+                {
+                    JsonTree tree{ loadFile(p) };
+                    Marshal(tree);
 
-					_blackholes.resize ( K::MaxBlackHoles );
+                    _blackholes.resize ( K::MaxBlackHoles );
 
-					{
-						auto fmt = gl::GlslProg::Format().define("MAX_BLACK_HOLES", std::to_string(_blackholes.size()));
-						fmt.vertex(app::loadAsset("Shaders/BlackHole.vs.glsl"));
-						fmt.fragment(app::loadAsset("Shaders/BlackHole.fs.glsl"));
-						fmt.fragDataLocation(0, "FinalColor");
+                    {
+                        auto fmt = gl::GlslProg::Format().define("MAX_BLACK_HOLES", std::to_string(_blackholes.size()));
+                        fmt.vertex(app::loadAsset("Shaders/BlackHole.vs.glsl"));
+                        fmt.fragment(app::loadAsset("Shaders/BlackHole.fs.glsl"));
+                        fmt.fragDataLocation(0, "FinalColor");
 
-						_blackHoleShader = gl::GlslProg::create(fmt);
-						_blackHoleShader->uniform("uAspectRatio", 1.0f / app::getWindowAspectRatio());
-					}
+                        _blackHoleShader = gl::GlslProg::create(fmt);
+                        _blackHoleShader->uniform("uAspectRatio", 1.0f / app::getWindowAspectRatio());
+                    }
 
-				}
-			}
-			catch (const std::exception& e)
-			{
-				std::cout << "Error marshalling session: " << e.what() << std::endl;
-			}
-		}
+                }
+            }
+            catch (const std::exception& e)
+            {
+                std::cout << "Error marshalling session: " << e.what() << std::endl;
+            }
+        }
     }
     
     HandleOSCValues ( slopeSurface );
@@ -752,7 +752,7 @@ void GravityWavesApp::HandleOSCValues ( const Surface &slopeSurface )
             auto& b = _blackholes[i];
             float vel = glm::clamp ( glm::length( b.Velocity ) / 32.0f, 0.0f, 1.0f );
             
-			float xPos = glm::clamp(b.Position.x / (float)getWindowWidth(), 0.0f, 1.0f);;
+            float xPos = glm::clamp(b.Position.x / (float)getWindowWidth(), 0.0f, 1.0f);;
 
             kBlackholeVelocities[i] = vel;
             kBlackholeXPositions[i] = lmap( xPos, 0.0f, 1.0f, -1.0f, 1.0f );
@@ -761,33 +761,33 @@ void GravityWavesApp::HandleOSCValues ( const Surface &slopeSurface )
     
     if ( _oscSender )
     {
-		if ( app::getElapsedFrames() % K::OSCSendDelay == 0 )
-		{
-			std::vector<std::pair<std::string, float>> messages;
-			messages.emplace_back ( K::OSCPrefix + "slopefield", kSlopeFieldOverallPressedness );
+        if ( app::getElapsedFrames() % K::OSCSendDelay == 0 )
+        {
+            std::vector<std::pair<std::string, float>> messages;
+            messages.emplace_back ( K::OSCPrefix + "slopefield", kSlopeFieldOverallPressedness );
                 
-			if ( kSlopeFieldOverallPressedness > K::UserPressednessThreshold )
-			{
-				for ( int i = 0; i < kBlackholeXPositions.size(); i++ )
-				{
-					std::stringstream xName;
-					std::stringstream vName;
-					vName << K::OSCPrefix + "blackhole" << (i + 1);
-					xName << K::OSCPrefix + "blackhole" << (i + 1) << "_x";
+            if ( kSlopeFieldOverallPressedness > K::UserPressednessThreshold )
+            {
+                for ( int i = 0; i < kBlackholeXPositions.size(); i++ )
+                {
+                    std::stringstream xName;
+                    std::stringstream vName;
+                    vName << K::OSCPrefix + "blackhole" << (i + 1);
+                    xName << K::OSCPrefix + "blackhole" << (i + 1) << "_x";
             
-					messages.emplace_back( vName.str(), kBlackholeVelocities[i] );
-					messages.emplace_back( xName.str(), kBlackholeXPositions[i]);
-				}
-			}
+                    messages.emplace_back( vName.str(), kBlackholeVelocities[i] );
+                    messages.emplace_back( xName.str(), kBlackholeXPositions[i]);
+                }
+            }
 
-			if ( K::OSCSendAllPacked )
-			{
-				_oscSender->SendPacked ( K::OSCPrefix, messages );
-			}else
-			{
-				_oscSender->Send ( messages );
-			}
-		}
+            if ( K::OSCSendAllPacked )
+            {
+                _oscSender->SendPacked ( K::OSCPrefix, messages );
+            }else
+            {
+                _oscSender->Send ( messages );
+            }
+        }
     }
 }
 
@@ -795,9 +795,9 @@ void Init(App::Settings * settings)
 {
 #ifdef CINDER_MSW
 #ifndef NDEBUG
-	settings->setWindowSize(1920, 1200);
+    settings->setWindowSize(1920, 1200);
 #else
-	settings->setFullScreen();
+    settings->setFullScreen();
 #endif
 #else
     settings->setWindowSize(1920, 1080);

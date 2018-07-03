@@ -26,131 +26,131 @@ namespace Video
     {
         IMFMediaTypeHandler *pHandler = nullptr;
         IMFActivate *pActivate = nullptr;
-	    IMFMediaSink *pSink = nullptr;
+        IMFMediaSink *pSink = nullptr;
 
         auto cleanup = [&] ( HRESULT r ) -> HRESULT
         {
             SafeRelease ( &pHandler );
             SafeRelease ( &pActivate );
-	        SafeRelease ( &pSink );
+            SafeRelease ( &pSink );
             return r;
         };
 
         #define CHECK(hr) if(FAILED(hr)) return cleanup(hr);
 
-	    HRESULT result = S_OK;
+        HRESULT result = S_OK;
         result = pSourceSD->GetMediaTypeHandler(&pHandler);
-	    CHECK( result );
+        CHECK( result );
 
         GUID guidMajorType;
         result = pHandler->GetMajorType(&guidMajorType);
-	    CHECK( result );
+        CHECK( result );
  
         if ( guidMajorType == MFMediaType_Audio)
         {
-		    HRESULT hr = S_OK;
+            HRESULT hr = S_OK;
 
-		    IMMDeviceEnumerator *pEnum = nullptr;
-		    IMMDeviceCollection *pDevices = nullptr;
-		    IMMDevice *pDevice = nullptr;
-		    IMFMediaSink *pSink = nullptr;
-		    IPropertyStore *pProps = nullptr;
+            IMMDeviceEnumerator *pEnum = nullptr;
+            IMMDeviceCollection *pDevices = nullptr;
+            IMMDevice *pDevice = nullptr;
+            IMFMediaSink *pSink = nullptr;
+            IPropertyStore *pProps = nullptr;
 
-		    LPWSTR wstrID = nullptr;		    
-		    hr = CoCreateInstance ( __uuidof(MMDeviceEnumerator), nullptr, CLSCTX_ALL, __uuidof(IMMDeviceEnumerator), (void**)&pEnum );
+            LPWSTR wstrID = nullptr;            
+            hr = CoCreateInstance ( __uuidof(MMDeviceEnumerator), nullptr, CLSCTX_ALL, __uuidof(IMMDeviceEnumerator), (void**)&pEnum );
 
-		    if (SUCCEEDED(hr))
-		    {
-			    hr = pEnum->EnumAudioEndpoints ( eRender, DEVICE_STATE_ACTIVE, &pDevices );
-		    }
+            if (SUCCEEDED(hr))
+            {
+                hr = pEnum->EnumAudioEndpoints ( eRender, DEVICE_STATE_ACTIVE, &pDevices );
+            }
 
-		    if (SUCCEEDED(hr))
-		    {
-			    UINT pcDevices = 0;
-			    pDevices->GetCount( &pcDevices );			
+            if (SUCCEEDED(hr))
+            {
+                UINT pcDevices = 0;
+                pDevices->GetCount( &pcDevices );           
 
-			    for(UINT i = 0 ; i < pcDevices; i++)
+                for(UINT i = 0 ; i < pcDevices; i++)
                 {
-				    hr = pDevices->Item(i, &pDevice);
+                    hr = pDevices->Item(i, &pDevice);
 
-				    if (SUCCEEDED(hr))
-				    {
-					    hr = pDevice->GetId(&wstrID);												
-				    }
+                    if (SUCCEEDED(hr))
+                    {
+                        hr = pDevice->GetId(&wstrID);                                               
+                    }
 
-				    if(SUCCEEDED(hr))
-				    {
-					    hr = pDevice->OpenPropertyStore ( STGM_READ, &pProps );
-				    }				
+                    if(SUCCEEDED(hr))
+                    {
+                        hr = pDevice->OpenPropertyStore ( STGM_READ, &pProps );
+                    }               
 
-				    PROPVARIANT varName = {0};
-				    if(SUCCEEDED(hr))
-				    {				
-					    PropVariantInit(&varName);
-                        hr = pProps->GetValue ( PKEY_Device_FriendlyName, &varName );		
+                    PROPVARIANT varName = {0};
+                    if(SUCCEEDED(hr))
+                    {               
+                        PropVariantInit(&varName);
+                        hr = pProps->GetValue ( PKEY_Device_FriendlyName, &varName );       
 
-					    if(SUCCEEDED(hr))
-					    {
-						    WCHAR szName[128];
-						    hr = PropVariantToString ( varName, szName, ARRAYSIZE(szName) );
-						    if (SUCCEEDED(hr) || hr == STRSAFE_E_INSUFFICIENT_BUFFER)
-						    {
-							    if ( wcscmp ( szName, audioDeviceId) == 0 ) 
+                        if(SUCCEEDED(hr))
+                        {
+                            WCHAR szName[128];
+                            hr = PropVariantToString ( varName, szName, ARRAYSIZE(szName) );
+                            if (SUCCEEDED(hr) || hr == STRSAFE_E_INSUFFICIENT_BUFFER)
+                            {
+                                if ( wcscmp ( szName, audioDeviceId) == 0 ) 
                                 {
-								    hr = pDevices->Item(i, &pDevice);
-								    if (SUCCEEDED(hr))
-								    {
-									    hr = pDevice->GetId(&wstrID);	
-									    PropVariantClear(&varName);
-									    break;
-								    }
-							    }	
-						    }					
-					    }
-				    }
- 			    }
-		    }
+                                    hr = pDevices->Item(i, &pDevice);
+                                    if (SUCCEEDED(hr))
+                                    {
+                                        hr = pDevice->GetId(&wstrID);   
+                                        PropVariantClear(&varName);
+                                        break;
+                                    }
+                                }   
+                            }                   
+                        }
+                    }
+                }
+            }
 
-		    if (SUCCEEDED(hr))
-		    {
-			    hr = MFCreateAudioRendererActivate(&pActivate);    
-		    }		
-		
-		    if (SUCCEEDED(hr))
-		    {
-			    hr = pActivate->SetString( MF_AUDIO_RENDERER_ATTRIBUTE_ENDPOINT_ID, wstrID );
-		    }
+            if (SUCCEEDED(hr))
+            {
+                hr = MFCreateAudioRendererActivate(&pActivate);    
+            }       
+        
+            if (SUCCEEDED(hr))
+            {
+                hr = pActivate->SetString( MF_AUDIO_RENDERER_ATTRIBUTE_ENDPOINT_ID, wstrID );
+            }
 
             *ppActivate = pActivate;
-		    (*ppActivate)->AddRef();
+            (*ppActivate)->AddRef();
 
             // @TODO(andrew): Check against SAFE_RELEASE
-		    SafeRelease(&pEnum);
-		    SafeRelease(&pDevices);
-		    SafeRelease(&pDevice); 		
-		    CoTaskMemFree(wstrID);
+            SafeRelease(&pEnum);
+            SafeRelease(&pDevices);
+            SafeRelease(&pDevice);      
+            CoTaskMemFree(wstrID);
         }
 
         else if ( guidMajorType == MFMediaType_Video )
         {
             result = MFCreateVideoRenderer( __uuidof(IMFMediaSink), (void**)&pSink);
-		    CHECK( result );
+            CHECK( result );
 
-		    IMFVideoRenderer*  pVideoRenderer = nullptr;
-		    result = pSink->QueryInterface(__uuidof(IMFVideoRenderer),(void**) &pVideoRenderer);
-		    CHECK( result );
+            IMFVideoRenderer*  pVideoRenderer = nullptr;
+            result = pSink->QueryInterface(__uuidof(IMFVideoRenderer),(void**) &pVideoRenderer);
+            CHECK( result );
 
-		    result = pVideoRenderer->InitializeRenderer( nullptr, pVideoPresenter ) ;
-		    CHECK( result );
+            result = pVideoRenderer->InitializeRenderer( nullptr, pVideoPresenter ) ;
+            CHECK( result );
 
-		    *ppMediaSink = pSink;
-		    (*ppMediaSink)->AddRef();
+            *ppMediaSink = pSink;
+            (*ppMediaSink)->AddRef();
         }else
         {
             result = E_FAIL;
         }
 
-	    CHECK( result );
+        CHECK( result );
         return cleanup(result);
     }
 
@@ -168,19 +168,19 @@ namespace Video
         #define CHECK(hr) if(FAILED(hr)) return cleanup(hr);
            
         result = MFCreateTopologyNode(MF_TOPOLOGY_SOURCESTREAM_NODE, &pNode);
-	    CHECK( result );
+        CHECK( result );
 
         result = pNode->SetUnknown(MF_TOPONODE_SOURCE, pSource);
-	    CHECK( result );
+        CHECK( result );
 
         result = pNode->SetUnknown(MF_TOPONODE_PRESENTATION_DESCRIPTOR, pPD);
-	    CHECK( result );
+        CHECK( result );
 
         result = pNode->SetUnknown(MF_TOPONODE_STREAM_DESCRIPTOR, pSD);
-	    CHECK( result );
+        CHECK( result );
     
         result = pTopology->AddNode(pNode);
-	    CHECK( result );
+        CHECK( result );
 
         *ppNode = pNode;
         (*ppNode)->AddRef();
@@ -188,40 +188,40 @@ namespace Video
         return cleanup(result);
     }
 
-    HRESULT AddOutputNode ( IMFTopology *pTopology,	IMFStreamSink *pStreamSink,	IMFTopologyNode **ppNode )
+    HRESULT AddOutputNode ( IMFTopology *pTopology, IMFStreamSink *pStreamSink, IMFTopologyNode **ppNode )
     {
-	    IMFTopologyNode *pNode = nullptr;
-	    HRESULT result = S_OK;
+        IMFTopologyNode *pNode = nullptr;
+        HRESULT result = S_OK;
 
-	    result = MFCreateTopologyNode(MF_TOPOLOGY_OUTPUT_NODE, &pNode);
+        result = MFCreateTopologyNode(MF_TOPOLOGY_OUTPUT_NODE, &pNode);
 
-	    if (SUCCEEDED(result))
-	    {
-		    result = pNode->SetObject(pStreamSink);
-	    }
+        if (SUCCEEDED(result))
+        {
+            result = pNode->SetObject(pStreamSink);
+        }
 
-	    if (SUCCEEDED(result))
-	    {
-		    result = pTopology->AddNode(pNode);
-	    }
+        if (SUCCEEDED(result))
+        {
+            result = pTopology->AddNode(pNode);
+        }
 
-	    if (SUCCEEDED(result))
-	    {
-		    result = pNode->SetUINT32(MF_TOPONODE_NOSHUTDOWN_ON_REMOVE, TRUE);
-	    }
+        if (SUCCEEDED(result))
+        {
+            result = pNode->SetUINT32(MF_TOPONODE_NOSHUTDOWN_ON_REMOVE, TRUE);
+        }
 
-	    if (SUCCEEDED(result))
-	    {
-		    *ppNode = pNode;
-		    (*ppNode)->AddRef();
-	    }
+        if (SUCCEEDED(result))
+        {
+            *ppNode = pNode;
+            (*ppNode)->AddRef();
+        }
 
-	    if ( pNode )
-	    {
-		    pNode->Release();
-	    }
+        if ( pNode )
+        {
+            pNode->Release();
+        }
 
-	    return result;
+        return result;
     }
 
     HRESULT AddOutputNode ( IMFTopology *pTopology, IMFActivate *pActivate, DWORD dwId, IMFTopologyNode **ppNode )
@@ -236,21 +236,21 @@ namespace Video
 
         #define CHECK(hr) if(FAILED(hr)) return cleanup(hr);
 
-	    HRESULT result = S_OK;
+        HRESULT result = S_OK;
         result = MFCreateTopologyNode(MF_TOPOLOGY_OUTPUT_NODE, &pNode);
-	    CHECK( result );
+        CHECK( result );
 
         result = pNode->SetObject(pActivate);
-	    CHECK( result );
+        CHECK( result );
 
         result = pNode->SetUINT32(MF_TOPONODE_STREAMID, dwId);
-	    CHECK( result );
+        CHECK( result );
 
         result = pNode->SetUINT32(MF_TOPONODE_NOSHUTDOWN_ON_REMOVE, FALSE);
-	    CHECK( result );
+        CHECK( result );
 
         result = pTopology->AddNode(pNode);
-	    CHECK( result );
+        CHECK( result );
         
         *ppNode = pNode;
         (*ppNode)->AddRef();
@@ -264,7 +264,7 @@ namespace Video
         IMFActivate         *pSinkActivate = nullptr;
         IMFTopologyNode     *pSourceNode = nullptr;
         IMFTopologyNode     *pOutputNode = nullptr;
-	    IMFMediaSink        *pMediaSink = nullptr;
+        IMFMediaSink        *pMediaSink = nullptr;
 
         BOOL selected       = false;
 
@@ -274,39 +274,39 @@ namespace Video
             SafeRelease(&pSinkActivate);
             SafeRelease(&pSourceNode);
             SafeRelease(&pOutputNode);
-	
+    
             return r;
         };
 
         #define CHECK(hr) if(FAILED(hr)) return cleanup(hr);
 
         HRESULT result = pPD->GetStreamDescriptorByIndex ( iStream, &selected, &pSD );
-	    CHECK( result );
+        CHECK( result );
 
         if ( selected )
         {
             result = CreateMediaSinkActivate ( pSD, hVideoWnd, &pSinkActivate,pVideoPresenter,&pMediaSink, audioDeviceId);
-		    CHECK( result );
+            CHECK( result );
 
             result = AddSourceNode ( pTopology, pSource, pPD, pSD, &pSourceNode );
-		    CHECK( result );
+            CHECK( result );
 
             if ( pSinkActivate )
-		    {
-			     result = AddOutputNode ( pTopology, pSinkActivate, 0, &pOutputNode );
-		    }else if ( pMediaSink )
-		    {
-			    IMFStreamSink  * pStreamSink = nullptr;
-			    DWORD streamCount;
+            {
+                 result = AddOutputNode ( pTopology, pSinkActivate, 0, &pOutputNode );
+            }else if ( pMediaSink )
+            {
+                IMFStreamSink  * pStreamSink = nullptr;
+                DWORD streamCount;
 
-			    pMediaSink->GetStreamSinkCount( &streamCount ) ;
-			    pMediaSink->GetStreamSinkByIndex( 0, &pStreamSink );
+                pMediaSink->GetStreamSinkCount( &streamCount ) ;
+                pMediaSink->GetStreamSinkByIndex( 0, &pStreamSink );
 
-			    result = AddOutputNode ( pTopology, pStreamSink, &pOutputNode );
-			    CHECK( result );
-		    }
+                result = AddOutputNode ( pTopology, pStreamSink, &pOutputNode );
+                CHECK( result );
+            }
 
-		    CHECK( result );
+            CHECK( result );
             result = pSourceNode->ConnectOutput ( 0, pOutputNode, 0 );
         }
         

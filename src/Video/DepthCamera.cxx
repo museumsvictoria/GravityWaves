@@ -12,8 +12,8 @@
     #include <Video/OSX/ImageSequenceDepthCamera.h>
     using CameraType = Video::ImageSequenceDepthCamera;
 #else
-	#include <Video/Win32/KinectDepthCamera.h>
-	using CameraType = Video::KinectDepthCamera;
+    #include <Video/Win32/KinectDepthCamera.h>
+    using CameraType = Video::KinectDepthCamera;
 #endif
 
 using namespace ci;
@@ -77,17 +77,17 @@ namespace Video
     
     void DepthCamera::NotifyFrame ( DepthFrame frame, bool onMainThread )
     {
-		frame.Frame = _frameCount++;
+        frame.Frame = _frameCount++;
 
         if ( onMainThread && !app::isMainThread() )
         {
             app::App::get()->dispatchAsync( [=]
             {
-				OnFrame.emit ( frame );
+                OnFrame.emit ( frame );
             } );
         }else
         {
-			OnFrame.emit ( frame );
+            OnFrame.emit ( frame );
         }
     }
     

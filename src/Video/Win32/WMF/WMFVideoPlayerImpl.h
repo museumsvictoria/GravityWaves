@@ -15,23 +15,23 @@
 
 namespace Video
 {
-	namespace
-	{
-		inline void Error(const std::string& error)
-		{
-			std::cout << "[WMFVideoPlayerImpl::Error] => " << error << std::endl;
-		}
+    namespace
+    {
+        inline void Error(const std::string& error)
+        {
+            std::cout << "[WMFVideoPlayerImpl::Error] => " << error << std::endl;
+        }
 
-		inline void Info(const std::string& error)
-		{
-			std::cout << "[WMFVideoPlayerImpl::Info] => " << error << std::endl;
-		}
+        inline void Info(const std::string& error)
+        {
+            std::cout << "[WMFVideoPlayerImpl::Info] => " << error << std::endl;
+        }
 
-		inline void Warn(const std::string& error)
-		{
-			std::cout << "[WMFVideoPlayerImpl::Warn] => " << error << std::endl;
-		}
-	}
+        inline void Warn(const std::string& error)
+        {
+            std::cout << "[WMFVideoPlayerImpl::Warn] => " << error << std::endl;
+        }
+    }
 
     using WMFVideoPlayerImplRef = std::shared_ptr<class WMFVideoPlayerImpl>;
     class WMFVideoPlayerImpl : public VideoPlayer
@@ -46,14 +46,14 @@ namespace Video
         void                            Draw                ( const ci::Rectf& bounds ) override;
         void                            DrawWithShader      ( const ci::Rectf& bounds, const ci::gl::GlslProgRef& shader ) override;
         
-		void							BindTexture			( ) override;
-		void							UnbindTexture		( ) override;
+        void                            BindTexture         ( ) override;
+        void                            UnbindTexture       ( ) override;
 
         void                            Play                ( const std::string& path ) override;
-		void                            Stop				( bool complete = false ) override;
+        void                            Stop                ( bool complete = false ) override;
 
-		void							Loops				( bool loops ) override;
-		bool							Loops				( ) const override { return _loops; }
+        void                            Loops               ( bool loops ) override;
+        bool                            Loops               ( ) const override { return _loops; }
         
         void                            Pause               ( ) override;
         void                            Resume              ( ) override;
@@ -89,30 +89,30 @@ namespace Video
         void                            OnComplete          ( CompleteFn handler ) override;
         void                            OnError             ( ErrorFn handler ) override;
         
-		HWND							GetPlayerWindow		( ) const;
-        LRESULT							WndProc				( HWND window, UINT message, WPARAM wParam, LPARAM lParam );
+        HWND                            GetPlayerWindow     ( ) const;
+        LRESULT                         WndProc             ( HWND window, UINT message, WPARAM wParam, LPARAM lParam );
 
     protected:
 
-		// Win32 / WMF Methods
+        // Win32 / WMF Methods
 
-		bool							InitInstance    	( );
-		void							OnPlayerEvent		( HWND window, WPARAM param );
+        bool                            InitInstance        ( );
+        void                            OnPlayerEvent       ( HWND window, WPARAM param );
 
         class WMFVideoPlayerPrivateImpl* _player;
         float                           _rate{1.0f};
-		float							_volume{ 1.0f };
+        float                           _volume{ 1.0f };
         bool                            _isPlaying{false};
 
-		HWND							_playerWindow;
-		bool							_shouldRepaintClient{ false };
+        HWND                            _playerWindow;
+        bool                            _shouldRepaintClient{ false };
 
-		ci::ivec2						_size;
-		bool							_waitForLoadedToPlay{ false };
-		bool							_sharedTextureCreated{ false };
+        ci::ivec2                       _size;
+        bool                            _waitForLoadedToPlay{ false };
+        bool                            _sharedTextureCreated{ false };
 
         u32                             _id{0};
-		ci::gl::Texture2dRef			_texture;
+        ci::gl::Texture2dRef            _texture;
         std::string                     _audioDevice;
     };
 }

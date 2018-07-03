@@ -31,7 +31,7 @@ namespace Video
         
         using FrameSignal           = ci::signals::Signal<void(DepthFrame)>;
         
-        DepthCamera 	            ( const Format& format );
+        DepthCamera                 ( const Format& format );
         virtual ~DepthCamera        ( ) { }
         
         bool                        Init            ( );

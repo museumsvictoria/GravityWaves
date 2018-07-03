@@ -23,36 +23,36 @@ OscSender::OscSender ( u32 port, const std::string& host )
 
 void OscSender::Send ( const std::string& message )
 {
-	InternalSend ( osc::Message{ message } );
+    InternalSend ( osc::Message{ message } );
 }
 
 void OscSender::Send ( const std::string& message, float value )
 {
-	osc::Message msg{ message };
-	msg.append(value);
+    osc::Message msg{ message };
+    msg.append(value);
 
-	InternalSend(msg);
+    InternalSend(msg);
 }
 
 void OscSender::Send ( const std::vector<std::pair<std::string, float>>& messages )
 {
-	std::lock_guard<std::mutex> lock{ _sendLock };
-	for (auto& p : messages)
-	{
-		osc::Message msg { p.first };
-		msg.append ( p.second );
-		_sender.send ( msg );
-	}
+    std::lock_guard<std::mutex> lock{ _sendLock };
+    for (auto& p : messages)
+    {
+        osc::Message msg { p.first };
+        msg.append ( p.second );
+        _sender.send ( msg );
+    }
 }
 
 void OscSender::SendPacked ( const std::string& prefix, const std::vector<std::pair<std::string, float>>& messages )
 {
-	std::lock_guard<std::mutex> lock{ _sendLock };
-	osc::Message msg { prefix + "blackholes" };
+    std::lock_guard<std::mutex> lock{ _sendLock };
+    osc::Message msg { prefix + "blackholes" };
 
-	for ( auto& m : messages ) msg.append ( m.second );
+    for ( auto& m : messages ) msg.append ( m.second );
 
-	_sender.send ( msg );
+    _sender.send ( msg );
 }
 
 void OscSender::InternalSend ( const ci::osc::Message& message )

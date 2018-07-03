@@ -18,10 +18,10 @@ public:
     
     OscSender                               ( u32 port, const std::string& address = "0.0.0.0" );
     
-    void                                    Send		( const std::string& message );
-    void                                    Send		( const std::string& message, float value );
-	void									Send		( const std::vector<std::pair<std::string, float>>& messages );
-	void									SendPacked	( const std::string& prefix, const std::vector<std::pair<std::string, float>>& messages );
+    void                                    Send        ( const std::string& message );
+    void                                    Send        ( const std::string& message, float value );
+    void                                    Send        ( const std::vector<std::pair<std::string, float>>& messages );
+    void                                    SendPacked  ( const std::string& prefix, const std::vector<std::pair<std::string, float>>& messages );
     
     ~OscSender                              ( );
     

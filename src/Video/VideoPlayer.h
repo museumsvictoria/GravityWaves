@@ -47,7 +47,7 @@ namespace Video
         
         virtual ~VideoPlayer            ( );
 
-        virtual void                	Init                ( );
+        virtual void                    Init                ( );
         virtual void                    Update              ( );
         virtual void                    Draw                ( const ci::Rectf& bounds );
         virtual void                    DrawWithShader      ( const ci::Rectf& bounds, const ci::gl::GlslProgRef& shader );
@@ -77,7 +77,7 @@ namespace Video
         virtual ci::vec2                Size                ( ) const;
         virtual ci::Area                Bounds              ( ) const;
         
-        virtual float            		Time                ( ) const;
+        virtual float                   Time                ( ) const;
         virtual float                   Duration            ( ) const;
         
         virtual float                   PercentComplete     ( ) const;

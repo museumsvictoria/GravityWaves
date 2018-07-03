@@ -22,7 +22,7 @@ namespace
     using WindowToPlayer                = std::pair<HWND, Video::WMFPlayer>;
 
     static bool                         kRequiresGlobalInit = true; 
-	static u32                          kActiveInstances = 0;
+    static u32                          kActiveInstances = 0;
     static std::vector<WindowToPlayer>  kAllInstances;
 
 #ifndef NDEBUG
@@ -60,21 +60,21 @@ namespace
     {
         switch (message)
         {
-		    case WM_CREATE:
-		    {
-			    return DefWindowProc ( hwnd, message, wParam, lParam );
-		    }
-		    default:
-		    {
-			    auto player = FindPlayerByWindow ( hwnd );
-			    if ( !player )
+            case WM_CREATE:
+            {
+                return DefWindowProc ( hwnd, message, wParam, lParam );
+            }
+            default:
+            {
+                auto player = FindPlayerByWindow ( hwnd );
+                if ( !player )
                 {
-				    return DefWindowProc(hwnd, message, wParam, lParam);
+                    return DefWindowProc(hwnd, message, wParam, lParam);
                 }else
                 {
-			        return player->WndProc (hwnd, message, wParam, lParam);
+                    return player->WndProc (hwnd, message, wParam, lParam);
                 }
-		    }
+            }
         }
         return 0;
     }
@@ -89,10 +89,10 @@ namespace Video
         if ( kRequiresGlobalInit ) GlobalInit ( );
 
         _id = kActiveInstances++;
-		if (!InitInstance())
-		{
-			Error("Error initializing instance!");
-		}
+        if (!InitInstance())
+        {
+            Error("Error initializing instance!");
+        }
     }
 
     void WMFVideoPlayerImpl::Init ( )
@@ -110,49 +110,49 @@ namespace Video
             _isPlaying = true;
         }
 
-		//Info(Log::Msg() << Time() << "/" << Duration());
+        //Info(Log::Msg() << Time() << "/" << Duration());
     }
 
-	
-	void WMFVideoPlayerImpl::Loops ( bool loops )
-	{
-		if (_player)
-		{
-			_loops = loops;
-			_player->IsLooping = loops;
-		}
-	}
+    
+    void WMFVideoPlayerImpl::Loops ( bool loops )
+    {
+        if (_player)
+        {
+            _loops = loops;
+            _player->IsLooping = loops;
+        }
+    }
 
-	void WMFVideoPlayerImpl::BindTexture()
-	{
-		if (_texture)
-		{
-			_player->Presenter()->LockSharedTexture();
-			_texture->bind();
-		}
-	}
+    void WMFVideoPlayerImpl::BindTexture()
+    {
+        if (_texture)
+        {
+            _player->Presenter()->LockSharedTexture();
+            _texture->bind();
+        }
+    }
 
-	void WMFVideoPlayerImpl::UnbindTexture()
-	{
-		if (_texture)
-		{
-			_player->Presenter()->UnlockSharedTexture();
-			_texture->unbind();
-		}
-	}
+    void WMFVideoPlayerImpl::UnbindTexture()
+    {
+        if (_texture)
+        {
+            _player->Presenter()->UnlockSharedTexture();
+            _texture->unbind();
+        }
+    }
 
     
     void WMFVideoPlayerImpl::Draw ( const ci::Rectf& bounds )
     {
-		if ( _texture )
+        if ( _texture )
         {
-			Rectf r = bounds;
+            Rectf r = bounds;
             std::swap ( r.y1, r.y2 );
             _player->Presenter()->LockSharedTexture();
 
-			gl::draw(_texture, r );
+            gl::draw(_texture, r );
             _player->Presenter()->UnlockSharedTexture();
-		}
+        }
     }
 
     void WMFVideoPlayerImpl::DrawWithShader ( const ci::Rectf& bounds, const ci::gl::GlslProgRef& shader )
@@ -187,56 +187,56 @@ namespace Video
         try
         {
             HRESULT result = S_OK;
-	        std::wstring w(fullPath.length(), L' ');
-	        std::copy(fullPath.begin(), fullPath.end(), w.begin());
+            std::wstring w(fullPath.length(), L' ');
+            std::copy(fullPath.begin(), fullPath.end(), w.begin());
 
-	        std::wstring a(_audioDevice.length(), L' ');
-	        std::copy(_audioDevice.begin(), _audioDevice.end(), a.begin());
+            std::wstring a(_audioDevice.length(), L' ');
+            std::copy(_audioDevice.begin(), _audioDevice.end(), a.begin());
 
-	        result = _player->OpenURL( w.c_str(), a.c_str() );
-			_player->Volume(_volume);
+            result = _player->OpenURL( w.c_str(), a.c_str() );
+            _player->Volume(_volume);
 
-	        if (!_sharedTextureCreated)
-	        {
-		        _size.x = _player->Width();
-		        _size.y = _player->Height();
-	
-				//Info(Log::Msg() << "Creating initial shared texture: " << _size);
+            if (!_sharedTextureCreated)
+            {
+                _size.x = _player->Width();
+                _size.y = _player->Height();
+    
+                //Info(Log::Msg() << "Creating initial shared texture: " << _size);
 
-		        gl::Texture::Format fmt = gl::Texture::Format().internalFormat(GL_RGBA).target ( GL_TEXTURE_RECTANGLE );
-		        _texture = gl::Texture::create ( _size.x, _size.y, fmt );
-		        
-				if (!_player->Presenter()->CreateSharedTexture(_size.x, _size.y, _texture->getId()))
-				{
-					Error("Error Creeating Shared Texture!");
-				}
-		        _sharedTextureCreated = true;
-	        }else 
-	        {
-		        if ( ( _size.x != _player->Width() ) || ( _size.y != _player->Height() ) )
-		        {
-					_player->Presenter()->ReleaseSharedTexture();
+                gl::Texture::Format fmt = gl::Texture::Format().internalFormat(GL_RGBA).target ( GL_TEXTURE_RECTANGLE );
+                _texture = gl::Texture::create ( _size.x, _size.y, fmt );
+                
+                if (!_player->Presenter()->CreateSharedTexture(_size.x, _size.y, _texture->getId()))
+                {
+                    Error("Error Creeating Shared Texture!");
+                }
+                _sharedTextureCreated = true;
+            }else 
+            {
+                if ( ( _size.x != _player->Width() ) || ( _size.y != _player->Height() ) )
+                {
+                    _player->Presenter()->ReleaseSharedTexture();
 
-			        _size.x = _player->Width();
-			        _size.y = _player->Height();
+                    _size.x = _player->Width();
+                    _size.y = _player->Height();
 
-					//Info(Log::Msg() << "Replacing shared texture: " << _size);
+                    //Info(Log::Msg() << "Replacing shared texture: " << _size);
 
-					gl::Texture::Format fmt = gl::Texture::Format().internalFormat(GL_RGBA).target ( GL_TEXTURE_RECTANGLE );
-		            _texture = gl::Texture::create ( _size.x, _size.y, fmt );
+                    gl::Texture::Format fmt = gl::Texture::Format().internalFormat(GL_RGBA).target ( GL_TEXTURE_RECTANGLE );
+                    _texture = gl::Texture::create ( _size.x, _size.y, fmt );
 
-					if (!_player->Presenter()->CreateSharedTexture(_size.x, _size.y, _texture->getId()))
-					{
-						Error("Error Creating Shared Texture!");
-					}
-		        }
-	        }
+                    if (!_player->Presenter()->CreateSharedTexture(_size.x, _size.y, _texture->getId()))
+                    {
+                        Error("Error Creating Shared Texture!");
+                    }
+                }
+            }
 
-	        _waitForLoadedToPlay = false;
+            _waitForLoadedToPlay = false;
 
         }catch ( const std::exception& e )
         {
-			Error( e.what() );
+            Error( e.what() );
             NotifyError( ErrorCode::UnknownError );
         }
 
@@ -379,20 +379,20 @@ namespace Video
     
     void WMFVideoPlayerImpl::Volume ( float volume )
     {
-		_volume = volume;
+        _volume = volume;
         if ( _player ) _player->Volume ( volume );
     }
     
     float WMFVideoPlayerImpl::Volume ( ) const
     {
-		if ( _player ) return _player->Volume();
+        if ( _player ) return _player->Volume();
         return _volume;
     }
     
     void WMFVideoPlayerImpl::OnComplete ( CompleteFn handler )
     {
         _completeFn = handler;
-		_player->OnComplete([this] { NotifyComplete(); });
+        _player->OnComplete([this] { NotifyComplete(); });
     }
     
     void WMFVideoPlayerImpl::OnError ( ErrorFn handler )
@@ -405,7 +405,7 @@ namespace Video
         return _playerWindow;
     }
         
-	LRESULT	WMFVideoPlayerImpl::WndProc ( HWND window, UINT message, WPARAM wParam, LPARAM lParam )
+    LRESULT WMFVideoPlayerImpl::WndProc ( HWND window, UINT message, WPARAM wParam, LPARAM lParam )
     {
         switch ( message )
         {
@@ -428,42 +428,42 @@ namespace Video
         return 0;
     }
 
-	bool WMFVideoPlayerImpl::InitInstance ( )
+    bool WMFVideoPlayerImpl::InitInstance ( )
     {
         PCWSTR windowClassName = L"WMFVideoPlayerImpl";
         HWND window;
         
-		static bool kHasRegistered = false;
+        static bool kHasRegistered = false;
 
-		if (!kHasRegistered)
-		{
-			kHasRegistered = true;
+        if (!kHasRegistered)
+        {
+            kHasRegistered = true;
 
-			WNDCLASSEX windowClass;
+            WNDCLASSEX windowClass;
 
-			ZeroMemory(&windowClass, sizeof(WNDCLASSEX));
+            ZeroMemory(&windowClass, sizeof(WNDCLASSEX));
 
-			windowClass.cbSize = sizeof(WNDCLASSEX);
-			windowClass.style = CS_HREDRAW | CS_VREDRAW;
-			windowClass.lpfnWndProc = InterceptedWndProc;
-			windowClass.hbrBackground = (HBRUSH)BLACK_BRUSH;
-			windowClass.lpszClassName = windowClassName;
-			windowClass.hInstance = GetModuleHandle(NULL); 
-	
-			auto result = RegisterClassEx(&windowClass);
-			
-			char w[32] = { 0 }; 
-			GetAtomNameA(result, w, 31);
-			
-			//Info(Log::Msg() << "Registering WindowClass: " << std::hex << result << std::dec << ": " << w );
+            windowClass.cbSize = sizeof(WNDCLASSEX);
+            windowClass.style = CS_HREDRAW | CS_VREDRAW;
+            windowClass.lpfnWndProc = InterceptedWndProc;
+            windowClass.hbrBackground = (HBRUSH)BLACK_BRUSH;
+            windowClass.lpszClassName = windowClassName;
+            windowClass.hInstance = GetModuleHandle(NULL); 
+    
+            auto result = RegisterClassEx(&windowClass);
+            
+            char w[32] = { 0 }; 
+            GetAtomNameA(result, w, 31);
+            
+            //Info(Log::Msg() << "Registering WindowClass: " << std::hex << result << std::dec << ": " << w );
 
-			if ( result == 0 )
-			{
-				auto d = GetLastError();
-				//Warn(Log::Msg() << "Error registering window class: " << d << " : " << std::hex << d << std::dec);
-			}
-		}
-		
+            if ( result == 0 )
+            {
+                auto d = GetLastError();
+                //Warn(Log::Msg() << "Error registering window class: " << d << " : " << std::hex << d << std::dec);
+            }
+        }
+        
         window = CreateWindow(windowClassName, L"", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, nullptr, nullptr );
         if ( !window )
         {

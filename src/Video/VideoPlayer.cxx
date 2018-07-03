@@ -252,11 +252,11 @@ Video::VideoPlayerRef Video::VideoPlayer::Impl ( ) const
 
 Video::VideoPlayerRef Video::VideoPlayer::Impl ( ) const
 {
-	if ( !_impl ) 
-	{
-		_impl = std::make_shared<Video::WMFVideoPlayerImpl>( kAudioDevice );
-		_impl->Init();
-	}
+    if ( !_impl ) 
+    {
+        _impl = std::make_shared<Video::WMFVideoPlayerImpl>( kAudioDevice );
+        _impl->Init();
+    }
     return _impl;
 }
 
