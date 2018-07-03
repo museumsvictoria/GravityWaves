@@ -78,7 +78,7 @@
       <IgnoreSpecificDefaultLibraries>LIBCMT;LIBCPMT</IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "..\..\..\..\SDKs\cinder_0.9.1\blocks\Cinder-KCB2\lib\$(PlatformTarget)\$(Configuration)\KCBv2.dll" "$(OutDir)"
+      <Command>xcopy /y "..\blocks\Cinder-KCB2\lib\$(PlatformTarget)\$(Configuration)\KCBv2.dll" "$(OutDir)"
 xcopy /y "$(KINECTSDK20_DIR)Redist\Face\$(PlatformTarget)\Kinect20.Face.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -112,7 +112,7 @@
       <DataExecutionPrevention />
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "..\..\..\..\SDKs\cinder_0.9.1\blocks\Cinder-KCB2\lib\$(PlatformTarget)\KCBv2.dll" "$(OutDir)"
+      <Command>xcopy /y "..\blocks\Cinder-KCB2\lib\$(PlatformTarget)\KCBv2.dll" "$(OutDir)"
 xcopy /y "$(KINECTSDK20_DIR)Redist\Face\$(PlatformTarget)\Kinect20.Face.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
