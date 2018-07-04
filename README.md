@@ -45,7 +45,7 @@ All required external software is in the Dropbox/cosmicevents/Install These fold
 We use StayUp to monitor running processes Fluid.exe. I’ve written a small batch file for each that goes into the windows startup folder. Its job is to make sure that dropbox is started and to launch and monitor the app’s process. StayUp.exe needs to be set as “run as administrator” as it uses some of the windows system events to track things like heap allocations and memory working set, etc. This can be disabled in a pinch. The main invocation of StayUp looks like this.
 
 ```
-start /D %HOMEDRIVE%%HOMEPATH%\Dropbox\scienceworks-build\Gravity StayUp.exe "Gavity.exe" -e -i 3600 -t 10     
+start /D %HOMEDRIVE%%HOMEPATH%\Dropbox\scienceworks-build\Gravity StayUp.exe "Gravity.exe" -e -i 3600 -t 10     
       ^ "Working directory" to launch from                                     ^            ^  ^       ^
                                                             Process to monitor +            |  |       |
                                                                             Event logging  -+  |       |
