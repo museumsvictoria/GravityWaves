@@ -3,7 +3,7 @@
 A cross-platform, gavity waves simulation visualisation developed by
 [Snepo Research](https://www.snepo.com) using the [Cinder Framework](https://cinder.org). This software was commissioned by Museums Victoria for an interactive digital installation at *Beyond Perception: Seeing the Unseen*, a permanent exhibition at Scienceworks in Melbourne, Australia which opened in May 2018.
 
-![Gravity Waves Screenshot](https://scienceworks.s3.amazonaws.com/documentation/gravitywaves.png)
+![Gravity Waves Screenshot](https://scienceworks.s3.amazonaws.com/documentation/gravitywaves.jpg)
 
 The application was designed to run on a high performance Windows 10 PC connected to a HD projector. 
 Features of the application include:
@@ -138,5 +138,5 @@ Always accessible via the ` key. (tilde / backquote). Requires a mouse to be int
 
 These map 1 to 1 with the settings in the config file (explained above).
 
-![Admin Panel](https://scienceworks.s3.amazonaws.com/documentation/gravity-admin.png)
+![Admin Panel](hhttps://scienceworks.s3.amazonaws.com/documentation/gravity-admin.jpg)
 
