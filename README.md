@@ -138,5 +138,5 @@ Always accessible via the ` key. (tilde / backquote). Requires a mouse to be int
 
 These map 1 to 1 with the settings in the config file (explained above).
 
-![Admin Panel](hhttps://scienceworks.s3.amazonaws.com/documentation/gravity-admin.jpg)
+![Admin Panel](https://scienceworks.s3.amazonaws.com/documentation/gravity-admin.jpg)
 
